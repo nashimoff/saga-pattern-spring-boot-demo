@@ -4,8 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.appsdeveloperblog</groupId>
+        <artifactId>saga-pattern-spring-boot-demo</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
     <artifactId>core</artifactId>
     <version>1.0.0</version>
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -16,10 +24,4 @@
             <artifactId>jakarta.validation-api</artifactId>
         </dependency>
     </dependencies>
-
-    <parent>
-        <groupId>com.appsdeveloperblog</groupId>
-        <artifactId>saga-pattern-spring-boot-demo</artifactId>
-        <version>1.0.0</version>
-    </parent>
 </project>
