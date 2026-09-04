@@ -3,23 +3,23 @@ package com.appsdeveloperblog.core.dto.events;
 import java.util.UUID;
 
 public class PaymentProcessedEvent {
-    private UUID orderID;
+    private UUID orderId;
     private UUID paymentId;
 
     public PaymentProcessedEvent() {
     }
 
-    public PaymentProcessedEvent(UUID orderID, UUID paymentId) {
-        this.orderID = orderID;
+    public PaymentProcessedEvent(UUID orderId, UUID paymentId) {
+        this.orderId = orderId;
         this.paymentId = paymentId;
     }
 
-    public UUID getOrderID() {
-        return orderID;
+    public UUID getOrderId() {
+        return orderId;
     }
 
-    public void setOrderID(UUID orderID) {
-        this.orderID = orderID;
+    public void setOrderId(UUID orderID) {
+        this.orderId = orderID;
     }
 
     public UUID getPaymentId() {
