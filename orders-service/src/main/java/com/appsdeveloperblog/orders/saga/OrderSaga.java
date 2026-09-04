@@ -4,6 +4,7 @@ import com.appsdeveloperblog.core.dto.Payment;
 import com.appsdeveloperblog.core.dto.commands.ApproveOrderCommand;
 import com.appsdeveloperblog.core.dto.commands.ProcessPaymentCommand;
 import com.appsdeveloperblog.core.dto.commands.ReserveProductCommand;
+import com.appsdeveloperblog.core.dto.events.OrderApprovedEvent;
 import com.appsdeveloperblog.core.dto.events.OrderCreatedEvent;
 import com.appsdeveloperblog.core.dto.events.PaymentProcessedEvent;
 import com.appsdeveloperblog.core.dto.events.ProductReservedEvent;
@@ -19,8 +20,8 @@ import org.springframework.stereotype.Component;
 @Component
 @KafkaListener(topics={
         "${orders.events.topic.name}",
-        "{products.events.topic.name}",
-        "{payments.events.topic.name}"
+        "${products.events.topic.name}",
+        "${payments.events.topic.name}"
 })
 public class OrderSaga {
 
@@ -68,5 +69,10 @@ public class OrderSaga {
 
         ApproveOrderCommand approveOrderCommand = new ApproveOrderCommand(event.getOrderId());
         kafkaTemplate.send(ordersCommandsTopicName,approveOrderCommand);
+    }
+
+    @KafkaHandler
+    public void handleEvent(@Payload OrderApprovedEvent event) {
+        orderHistoryService.add(event.getOrderId(), OrderStatus.APPROVED);
     }
 }
